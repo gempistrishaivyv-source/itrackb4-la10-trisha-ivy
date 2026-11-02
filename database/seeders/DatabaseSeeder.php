@@ -3,11 +3,14 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\ShoeSeeder;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->call([ShoeSeeder::class]);
+        $this->call([
+            ShoeSeeder::class,
+        ]);
     }
 }

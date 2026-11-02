@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('title', 'Add Shoe')
@@ -11,14 +12,8 @@
 
         <div class="mb-3">
             <label for="name">Shoe Name</label>
-
-            <input
-                type="text"
-                name="name"
-                id="name"
-                class="form-control"
-                value="{{ old('name') }}"
-            >
+            <input type="text" name="name" id="name"
+                class="form-control" value="{{ old('name') }}">
 
             @error('name')
                 <div class="text-danger">{{ $message }}</div>
@@ -44,30 +39,28 @@
         </div>
 
         <div class="mb-3">
-            <label for="category">Category</label>
+            <label for="category_id">Category</label>
 
-            <select name="category" id="category" class="form-control">
+            <select name="category_id" id="category_id" class="form-control">
                 <option value="">Select Category</option>
-                <option value="Sneakers" @selected(old('category') === 'Sneakers')>Sneakers</option>
-                <option value="Casual" @selected(old('category') === 'Casual')>Casual</option>
-                <option value="Running" @selected(old('category') === 'Running')>Running</option>
+
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}"
+                        @selected(old('category_id') == $category->id)>
+                        {{ $category->name }}
+                    </option>
+                @endforeach
             </select>
 
-            @error('category')
+            @error('category_id')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="mb-3">
             <label for="price">Price</label>
-
-            <input
-                type="number"
-                name="price"
-                id="price"
-                class="form-control"
-                value="{{ old('price') }}"
-            >
+            <input type="number" name="price" id="price"
+                class="form-control" value="{{ old('price') }}">
 
             @error('price')
                 <div class="text-danger">{{ $message }}</div>

@@ -1,17 +1,16 @@
-# ITRACKB4 LA7 - Shoe Collection
+# README
 
-## Q1. What is the difference between POST and GET, and what happens when you refresh after a POST?
+## G1. Which column did you turn into a table, and why that one and not another?
 
-GET is used when we want to request or view a page, while POST is used when we send data from a form. In this activity, the shoe form uses POST because it sends a new shoe to the controller. After the shoe is saved, the controller redirects to the shoe list. This prevents the browser from submitting the same POST again when the page is refreshed.
+I turned the `category` column into a separate `categories` table because the shoe records share the same categories, such as Sneakers, Casual, and Running. Instead of repeatedly storing category names in the shoes table, I used `category_id` to connect each shoe to its category.
 
-## Q2. What happens when validation fails, and why does the save code not run?
+## G2. What number did screenshot 6 show, and why exactly that number?
 
-When validation fails, Laravel returns the user to the form and shows the errors. The values entered in the form can still be shown using old(). The save part of the store method does not continue because the validation did not pass. This prevents an invalid shoe record from being saved to the JSON file.
+Screenshot 6 showed **6 queries**. It consisted of one query to retrieve all five shoes and five additional queries to retrieve each shoe's category separately because the relationship was loaded using lazy loading.
 
-## Q3. Why does the success message appear once even though the layout is shown on every page?
+## G3. Your belongsTo method is named in the singular. What would break if you made it plural?
 
-The success message is stored as a session flash message after a shoe is saved. The layout checks the session and displays the message when it is available. After the message is shown, the flash message is removed from the session. This is why the message can appear once even though the layout is used on every page.
-
+My relationship method is named `category()` because each shoe belongs to only one category. If I renamed it to `categories()`, the existing `with('category')` and `$item->category->name` references would no longer match the relationship name and would cause errors unless I updated them too.
 ## Author
 
 Trisha Ivy Gempis
